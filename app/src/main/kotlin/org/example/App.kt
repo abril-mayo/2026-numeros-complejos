@@ -3,13 +3,18 @@
  */
 package org.example
 
-class App {
-    val greeting: String
-        get() {
-            return "Hello World!"
-        }
+class Complejo {
+    private val real: Int
+    private val imaginario: Int
+
+    fun inicializar(real: Int, imaginario: Int){
+        this.real=real
+        this.real=real
+    }
 }
 
 fun main() {
-    println(App().greeting)
+    val c = Complejo(3.0, 4.0)
+    println(c.mostrar())
+    pirntln("hola")
 }
