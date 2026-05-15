@@ -3,38 +3,73 @@
  */
 package org.example
 
-class Complejo(private var real: Int=0, private var imag: Int=0){
-    fun inicializar(real:Int,imag:Int){
-        this.real=real
-        this.imag=imag
+class Complejo(private var real: Double = 0.0, private var imag: Double = 0.0) {
+
+    fun inicializar(real: Double, imag: Double) {
+        this.real = real
+        this.imag = imag
     }
-    fun mostrar(){
+
+    fun mostrar() {
         println(this.toString())
     }
-    override fun toString():String{
+
+    override fun toString(): String {
         return "(${real},${imag})"
     }
+
     fun sumar(otro: Complejo): Complejo {
         return Complejo(
             real + otro.real,
             imag + otro.imag
         )
     }
+
     fun restar(otro: Complejo): Complejo {
         return Complejo(
             real - otro.real,
             imag - otro.imag
         )
     }
+
+    fun multiplicar(otro: Complejo): Complejo {
+
+        val resReal = (this.real * otro.real) - (this.imag * otro.imag)
+        val resImag = (this.real * otro.imag) + (this.imag * otro.real)
+
+        return Complejo(resReal, resImag)
+    }
+    fun dividir(otro: Complejo): Complejo {
+
+        val denominador = (otro.real * otro.real) + (otro.imag * otro.imag)
+        
+        val resReal = ((this.real * otro.real) + (this.imag * otro.imag)) / denominador
+        val resImag = ((this.imag * otro.real) - (this.real * otro.imag)) / denominador
+        
+        return Complejo(resReal, resImag)
+    }
 }
 
 fun main() {
     var complejo: Complejo
-    complejo= Complejo()
-    complejo.inicializar(3,4)
+    complejo = Complejo()
+    
+    complejo.inicializar(3.0, 4.0) 
+    
     println("mi número complejo es ${complejo.toString()}")
-    var c2:Complejo= Complejo(1,2)
+
+    var c2: Complejo = Complejo(1.0, 2.0)
+    
     var c3: Complejo
-    c3=complejo.sumar(c2)
+    
+    c3 = complejo.multiplicar(c2)
+    
+    print("El resultado de la multiplicación es: ")
     c3.mostrar()
+
+    var cDivision: Complejo
+    cDivision = complejo.dividir(c2)
+    
+    print("El resultado de la división es: ")
+    cDivision.mostrar()
 }
